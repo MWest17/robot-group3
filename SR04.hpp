@@ -1,21 +1,19 @@
+#include <stdint.h>
 
 
 class SR04class {
 public:
     SR04class() {}
 
-    SR04class(int vcc, int echo) {}
+    SR04class(uint8_t trig, uint8_t echo) {}
 
-    int distance() {}
+    double distance() {}
 
-    int getVCC() {}
+    uint8_t getTrig() {}
 
-    int getEcho() {}
+    uint8_t getEcho() {}
 
 private:
-    int vcc, echo;
-
-
-
+    uint8_t trig, echo;
 };
 

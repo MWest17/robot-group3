@@ -1,19 +1,37 @@
 #include "SR04.hpp"
 
-SR04class::SR04class(int vcc, int echo) {
-        this->vcc = vcc;
+#define TRIGGER_DELAY 10
+#define SOUND_CONSTANT 0.017 //microseconds per inch 
+
+//const uint16_t* pins[] = 
+//{
+//    (uint16_t*)0x25 PORT B Pins, 
+
+
+//};
+
+SR04class::SR04class(uint8_t vcc, uint8_t echo) {
+        this->vcc = trig;
         this->echo = echo;    
+        pinMode(trig, OUTPUT);
+        pinMode(echo, INPUT);
     }
 
-int SR04class::distance() {
-    
+double SR04class::distance() {
+    //Triggering Sensor
+    digitalWrite(trig, HIGH); //Sending trigger signal
+    delayMicroseconds(TRIGGER_DELAY); //Waiting for 10 micro seconds
+    digitalWrite(trig, LOW); //Turning off trigger signal
+
+    //Returning distance based on length of pulse multiplied by the inverse of the speed of sound
+    return pulseIn(echo, HIGH) * SOUND_CONSTANT ; //In centimeters
 }
 
 
-int SR04class::getVCC() {
-    return vcc;
+uint8_t SR04class::getTrig() {
+    return trig;
 }
 
-int SR04class::getEcho() {
+uint8_t SR04class::getEcho() {
     return echo;
 }
