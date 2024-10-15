@@ -1,6 +1,6 @@
 #include "SR04.hpp"
 
-#include "wiring_pulse.c"
+#include "Arduino.h"
 
 #define TRIGGER_DELAY 10
 #define SOUND_CONSTANT 0.017 //microseconds per inch 
@@ -17,7 +17,7 @@ double SR04class::distance() {
     pinMode(trig, OUTPUT);
     pinMode(echo, INPUT);
     digitalWrite(trig, LOW);
-    delayMicroseconds(1);
+    delayMicroseconds(2);
     
     //Triggering Sensor
     digitalWrite(trig, HIGH); //Sending trigger signal
@@ -25,7 +25,7 @@ double SR04class::distance() {
     digitalWrite(trig, LOW); //Turning off trigger signal
 
     //Returning distance based on length of pulse multiplied by the inverse of the speed of sound
-    return pulseIn(echo, HIGH) * SOUND_CONSTANT ; //In centimeters
+    return (pulseIn(echo, HIGH) * SOUND_CONSTANT); //In centimeters
 }
 
 
