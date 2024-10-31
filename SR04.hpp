@@ -14,6 +14,6 @@ public:
     uint8_t getEcho();
 
 private:
-    uint8_t trig, echo;
+    const uint8_t trig, echo;
 };
 
