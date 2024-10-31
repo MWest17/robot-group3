@@ -1,4 +1,5 @@
 #include "SR04.hpp"
+#include "L298N.hpp"
 
 SR04class SR04_1(12, 11);
 void setup() {
