@@ -4,13 +4,12 @@ class L298NClass {
 public:    
     L298NClass(uint8_t in1, uint8_t in2, uint8_t in3, uint8_t in4);
 
-    /*
-        turnLeft(speed)
-        turnRight(speed)
-        straight(speed)
+    //motorSpeed(int speedLeft, int speedRight) //negative number is backwards speed on wheel
 
-        motorSpeed(int speedLeft, int speedRight)
-        
+    /*
+        left(speed, duration)
+        right(speed, duration)  right(speed, degrees)
+        forward(speed) 
     */
 
 private:
@@ -22,6 +21,7 @@ private:
 
     //PWM Pins
     //const uint8_t ENA, ENB;
+
 };
 
 
