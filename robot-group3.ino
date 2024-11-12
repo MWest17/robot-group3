@@ -1,5 +1,6 @@
 #include "SR04.hpp"
 #include "IRSensor.hpp"
+#include "L298N.hpp"
 
 #define IR_OUT_LEFT 8
 #define IR_OUT_RIGHT 9

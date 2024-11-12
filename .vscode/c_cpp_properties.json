@@ -18,7 +18,8 @@
         {
             "name": "3000L",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/"
             ],
             "defines": [
                 "_DEBUG",
