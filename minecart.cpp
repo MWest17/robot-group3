@@ -1,13 +1,17 @@
 #include "minecart.hpp"
 
+#include "Arduino.h"
+
 //Creates default 
 minecartClass::minecartClass() : irL(IR_OUT_LEFT), irR(IR_OUT_RIGHT), L298N(IN1, IN2, IN3, IN4, ENA, ENB) {}
 
 //Moves robot
 void minecartClass::move() {
     if(irL.isReflecting() && irR.isReflecting()) { //Robot is on line
+        Serial.println("Forward");
+        L298N.forward(speed);
         //If the robot hasn't changed its state, accelerate
-        if (prevState == FORWARD) {
+        /*if (prevState == FORWARD) {
             //If the speed is less than the direction's max speed, accelerate
             if (speed < FORWARD_MAX) {
                 speed += FORWARD_ACCEL;
@@ -22,9 +26,12 @@ void minecartClass::move() {
             //Set previous state to forward
             prevState = FORWARD;
         }
-        
+        */
     } else if(irL.isReflecting() && !(irR.isReflecting())) { //Robot's right side is off line
         //Turn Right
+        Serial.println("Right");
+        L298N.right(speed);
+        /*
         if (prevState == RIGHT) {
             if (speed < RIGHT_MAX) {
                 speed += RIGHT_ACCEL;
@@ -34,9 +41,12 @@ void minecartClass::move() {
             speed = RIGHT_START;
             L298N.right(speed);
             prevState = RIGHT;
-        }
+        }*/
     } else if(!(irL.isReflecting()) && irR.isReflecting()) { //Robot's left side is off line
         //Turn Left
+        Serial.println("Left"); 
+        L298N.left(speed);
+        /*
         if (prevState == LEFT) {
             if (speed < LEFT_MAX) {
                 speed += LEFT_ACCEL;
@@ -46,10 +56,12 @@ void minecartClass::move() {
             speed = LEFT_START;
             L298N.left(speed);
             prevState = LEFT;
-        }
+        } */
     } else { //Robot is off line entirely
         //Stop
-        stop();
+        Serial.println("Stop");
+        L298N.stop();
+        //stop();
     }
 }
 

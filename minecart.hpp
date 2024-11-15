@@ -57,7 +57,7 @@ private:
     IRclass irR;
 
     //Attribute that holds the minecart's current speed value
-    uint8_t speed = 0;
+    uint8_t speed = 200;
 
     //Holds the previous robot's state
     direction prevState = STOP;
