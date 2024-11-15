@@ -13,6 +13,7 @@ public:
     bool isReflecting();
 
 private:
+    //Stores output pin number
     const uint8_t outPin;
 
 };

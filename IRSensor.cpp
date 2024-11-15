@@ -2,6 +2,7 @@
 
 #include "Arduino.h"
 
+//Constructor where output pin is given and then stored in member variable
 IRclass::IRclass(uint8_t outPin) : outPin(outPin) {}
 
 bool IRclass::isReflecting() {

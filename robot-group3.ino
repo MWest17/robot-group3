@@ -1,14 +1,12 @@
 #include "tnt.hpp"
 
-
+//Makes the object that is responsible for the tnt minecart
 tntClass tntCart;
 
-
-void setup() {
-  Serial.begin(9600);
-}
+void setup() {}
 
 
 void loop() {
+  //Makes the tnt minecart move
   tntCart.move();
 }

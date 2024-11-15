@@ -2,12 +2,13 @@
 
 #include "Arduino.h"
 
-
-L298NClass::L298NClass(uint8_t in1, uint8_t in2, uint8_t in3, uint8_t in4, uint8_t ENA, uint8_t ENB) : in1(in1), in2(in2), in3(in3), in4(in4), ENA(ENA), ENB(ENB) {}
-
-void L298NClass::forward(uint8_t speed) {
+//Saves all pins given to class attributes and sets pins to right modes
+L298NClass::L298NClass(uint8_t in1, uint8_t in2, uint8_t in3, uint8_t in4, uint8_t ENA, uint8_t ENB) : in1(in1), in2(in2), in3(in3), in4(in4), ENA(ENA), ENB(ENB) {
     pinInit();
+}
 
+//Makes motors both spin forward at speed given
+void L298NClass::forward(uint8_t speed) {
     //Left Motor Forward
     digitalWrite(in1, HIGH);
     digitalWrite(in2, LOW);
@@ -21,27 +22,24 @@ void L298NClass::forward(uint8_t speed) {
     analogWrite(ENB, speed);
 }
 
+//Makes Motor A (Left), spin forward, and Motor B (Right), spin backwards
 void L298NClass::right(uint8_t speed) {
-    pinInit();
-
     //Left Motor Forward
     digitalWrite(in1, HIGH);
     digitalWrite(in2, LOW);
 
-    //Right Motor Forward
+    //Right Motor Backwards
     digitalWrite(in3, LOW);
     digitalWrite(in4, HIGH);
 
     //Motor Speed
     analogWrite(ENA, speed);
     analogWrite(ENB, speed);
-} //Difference in speed of wheels
-//Inverted speed of both wheels
+} 
 
+//Makes Motor A (Left), spin backwards, and Motor B (Right), spin forward
 void L298NClass::left(uint8_t speed) {
-    pinInit();
-
-    //Left Motor Forward
+    //Left Motor Backwards
     digitalWrite(in1, LOW);
     digitalWrite(in2, HIGH);
 
@@ -54,9 +52,8 @@ void L298NClass::left(uint8_t speed) {
     analogWrite(ENB, speed);
 }
     
+//Makes both motors stop spinning
 void L298NClass::stop() {
-    pinInit();
-
     //Left Motor Forward
     digitalWrite(in1, LOW);
     digitalWrite(in2, LOW);
@@ -66,6 +63,7 @@ void L298NClass::stop() {
     digitalWrite(in4, LOW);
 }
 
+//Sets all 6 pins to output
 void L298NClass::pinInit() {
     pinMode(in1, OUTPUT);
     pinMode(in2, OUTPUT);
