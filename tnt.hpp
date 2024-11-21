@@ -1,13 +1,16 @@
 #include "minecart.hpp"
 
+#define LED_PIN 10
+#define FLASHING_SPEED 50
+
 
 class tntClass : public minecartClass {
 public:
     //Default constructor
-    tntClass();
+    tntClass(uint8_t forwardSpeed, uint8_t turningSpeed);
 
     //Method for moving
-    void move();
+    void update();
     
 private:
     //Method for stopping
@@ -15,9 +18,5 @@ private:
 
     //Method to make the explode 
     void explode();
-
-    //Attributes for holding LED Pin numbers
-    //uint8_t ledPins[] = {};
-    //uint8_t led;
 
 };

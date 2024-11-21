@@ -1,19 +1,20 @@
 #include "tnt.hpp"
 
+#include "Arduino.h"
+
 //Default constructor uses parent's contstructor
-tntClass::tntClass() : minecartClass::minecartClass() {}
+tntClass::tntClass(uint8_t forwardSpeed, uint8_t turningSpeed) : minecartClass::minecartClass(forwardSpeed, turningSpeed) {}
 
 //Method to move tnt minecart
-void tntClass::move() {
-    minecartClass::move();
+void tntClass::update() {
+    minecartClass::update();
 }
 
 //Makes the tnt block explode
 void tntClass::explode() {
-    //Start slowly flashing, then increase speed of flashing gradually until an explosion where all LED's come on
-    
-    //Boom
+    pinMode(LED_PIN, OUTPUT);
 
+    analogWrite(LED_PIN, FLASHING_SPEED);    
 }
 
 //Stops robot and makes it explode

@@ -3,65 +3,26 @@
 #include "Arduino.h"
 
 //Creates default 
-minecartClass::minecartClass() : irL(IR_OUT_LEFT), irR(IR_OUT_RIGHT), L298N(IN1, IN2, IN3, IN4, ENA, ENB) {}
+minecartClass::minecartClass(uint8_t forwardSpeed, uint8_t turningSpeed) : irL(IR_OUT_LEFT), irR(IR_OUT_RIGHT), 
+    L298N(IN1, IN2, IN3, IN4, ENA, ENB), forwardSpeed(forwardSpeed), turningSpeed(turningSpeed) {}
 
 //Moves robot
-void minecartClass::move() {
+void minecartClass::update() {
     if(irL.isReflecting() && irR.isReflecting()) { //Robot is on line
-        Serial.println("Forward");
-        L298N.forward(speed);
-        //If the robot hasn't changed its state, accelerate
-        /*if (prevState == FORWARD) {
-            //If the speed is less than the direction's max speed, accelerate
-            if (speed < FORWARD_MAX) {
-                speed += FORWARD_ACCEL;
-            }
-            //Go forward
-            L298N.forward(speed);
-        } else {
-            //If just starting to go forward, go at starting forward speed
-            speed = FORWARD_START;
-            //Go forward
-            L298N.forward(speed);
-            //Set previous state to forward
-            prevState = FORWARD;
-        }
-        */
+        //Go Forward
+        L298N.forward(forwardSpeed);
+
     } else if(irL.isReflecting() && !(irR.isReflecting())) { //Robot's right side is off line
-        //Turn Right
-        Serial.println("Right");
-        L298N.right(speed);
-        /*
-        if (prevState == RIGHT) {
-            if (speed < RIGHT_MAX) {
-                speed += RIGHT_ACCEL;
-            }
-            L298N.right(speed);
-        } else {
-            speed = RIGHT_START;
-            L298N.right(speed);
-            prevState = RIGHT;
-        }*/
-    } else if(!(irL.isReflecting()) && irR.isReflecting()) { //Robot's left side is off line
         //Turn Left
-        Serial.println("Left"); 
-        L298N.left(speed);
-        /*
-        if (prevState == LEFT) {
-            if (speed < LEFT_MAX) {
-                speed += LEFT_ACCEL;
-            }
-            L298N.left(speed);
-        } else {
-            speed = LEFT_START;
-            L298N.left(speed);
-            prevState = LEFT;
-        } */
+        L298N.right(turningSpeed);
+
+    } else if(!(irL.isReflecting()) && irR.isReflecting()) { //Robot's left side is off line
+        //Turn Right
+        L298N.left(turningSpeed);
+        
     } else { //Robot is off line entirely
         //Stop
-        Serial.println("Stop");
-        L298N.stop();
-        //stop();
+        stop();
     }
 }
 

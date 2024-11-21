@@ -15,6 +15,7 @@
 #define ENA 3
 #define ENB 9
 
+/*
 #define FORWARD_ACCEL 10
 #define RIGHT_ACCEL 5
 #define LEFT_ACCEL 5
@@ -26,6 +27,9 @@
 #define FORWARD_START 135
 #define RIGHT_START 120
 #define LEFT_START 120
+*/
+
+
 
 //Enum for direction of movement, for code readability
 typedef enum direction {
@@ -39,10 +43,10 @@ typedef enum direction {
 class minecartClass {
 public:
     //Default constructor
-    minecartClass();
+    minecartClass(uint8_t forwardSpeed, uint8_t turningSpeed);
 
     //Method to make the minecart move
-    void move();
+    void update();
 
 protected:
     //Object responsible for the motor controller
@@ -56,10 +60,8 @@ private:
     IRclass irL;
     IRclass irR;
 
-    //Attribute that holds the minecart's current speed value
-    uint8_t speed = 200;
-
-    //Holds the previous robot's state
-    direction prevState = STOP;
+    //Holds robot's speed values
+    const uint8_t forwardSpeed = 255;
+    const uint8_t turningSpeed = 230;
 
 };
