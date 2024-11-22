@@ -5,9 +5,27 @@
 //Default constructor uses parent's contstructor
 tntClass::tntClass(uint8_t forwardSpeed, uint8_t turningSpeed) : minecartClass::minecartClass(forwardSpeed, turningSpeed) {}
 
-//Method to move tnt minecart
-void tntClass::update() {
-    minecartClass::update();
+//Method to update tnt minecart's state
+direction tntClass::update() {
+   direction dir = minecartClass::update();
+   switch (dir) {
+    case FORWARD:
+    case RIGHT:
+    case LEFT: 
+        stopExplode();
+        break;
+    case STOP: 
+        explode();
+        break;
+   }
+
+   return dir;
+}
+
+void tntClass::stopExplode() {
+    pinMode(LED_PIN, OUTPUT);
+
+    analogWrite(LED_PIN, 0);
 }
 
 //Makes the tnt block explode
@@ -17,8 +35,4 @@ void tntClass::explode() {
     analogWrite(LED_PIN, FLASHING_SPEED);    
 }
 
-//Stops robot and makes it explode
-void tntClass::stop() {
-    L298N.stop();
-    explode();    
-}
+

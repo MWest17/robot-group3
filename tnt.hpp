@@ -1,3 +1,5 @@
+#pragma once
+
 #include "minecart.hpp"
 
 #define LED_PIN 10
@@ -10,13 +12,13 @@ public:
     tntClass(uint8_t forwardSpeed, uint8_t turningSpeed);
 
     //Method for moving
-    void update();
+    direction update();
     
 private:
-    //Method for stopping
-    void stop();
+    //Method to stop the minecart's explosion sequence
+    void stopExplode();
 
-    //Method to make the explode 
+    //Method to make the minecart explode 
     void explode();
 
 };

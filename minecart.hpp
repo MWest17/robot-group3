@@ -1,9 +1,10 @@
+#pragma once
+
 #include "SR04.hpp"
 #include "IRSensor.hpp"
 #include "L298N.hpp"
 
-//Defined terms for where wires are plugged in and constants
-//Will most likely be moved or changed to class attributes
+//Pins which the hardware is connected to 
 #define IR_OUT_LEFT 10
 #define IR_OUT_RIGHT 11
 
@@ -14,20 +15,6 @@
 
 #define ENA 3
 #define ENB 9
-
-/*
-#define FORWARD_ACCEL 10
-#define RIGHT_ACCEL 5
-#define LEFT_ACCEL 5
-
-#define FORWARD_MAX 255
-#define RIGHT_MAX 180
-#define LEFT_MAX 180
-
-#define FORWARD_START 135
-#define RIGHT_START 120
-#define LEFT_START 120
-*/
 
 
 
@@ -46,22 +33,19 @@ public:
     minecartClass(uint8_t forwardSpeed, uint8_t turningSpeed);
 
     //Method to make the minecart move
-    void update();
+    direction update();
 
 protected:
     //Object responsible for the motor controller
     L298NClass L298N;
 
 private:
-    //Method to stop minecart
-    void stop();
-
     //Objects responsible for left and right IR Sensors
     IRclass irL;
     IRclass irR;
 
     //Holds robot's speed values
-    const uint8_t forwardSpeed = 255;
-    const uint8_t turningSpeed = 230;
+    const uint8_t forwardSpeed;
+    const uint8_t turningSpeed;
 
 };

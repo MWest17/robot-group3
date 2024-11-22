@@ -7,11 +7,10 @@
 tntClass tntCart(FORWARD_SPEED, TURNING_SPEED);
 
 
-void setup() {
-}
+void setup() {}
 
 
 void loop() {
-  //Makes the tnt minecart move
+  //Updates the state of the tnt minecart
   tntCart.update();
 }
