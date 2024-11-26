@@ -35,4 +35,15 @@ void tntClass::explode() {
     analogWrite(LED_PIN, FLASHING_SPEED);    
 }
 
-
+/*
+explode()
+    Check if timer is started
+        Check if timer is above threshold
+            Change LED state
+    Else
+        Start timer
+    
+stopExplode()
+    Stop timer
+    Turn off LED's
+*/
