@@ -1,28 +1,16 @@
-#include "SR04.hpp"
-#include "IRSensor.hpp"
-#include "L298N.hpp"
+#include "tnt.hpp"
 
-#define IR_OUT_LEFT 8
-#define IR_OUT_RIGHT 9
+#define FORWARD_SPEED 255
+#define TURNING_SPEED 240
+
+//Makes the object that is responsible for the tnt minecart
+tntClass tntCart(FORWARD_SPEED, TURNING_SPEED);
 
 
-IRclass irL(IR_OUT_LEFT);
-IRclass irR(IR_OUT_RIGHT);
+void setup() {}
 
-void setup() {
-  Serial.begin(9600);
-}
 
 void loop() {
-
-  if(irL.isReflecting() && irR.isReflecting()) { //Is on line
-    //Go Straight
-  } else if(irL.isReflecting() && !(irR.isReflecting())) { //Robot right side is off line
-    //Turn Right
-  } else if(!(irL.isReflecting()) && irR.isReflecting()) { //Robot left side is off line
-    //Turn Left
-  } else { //Robot is off line entirely
-    //Stop
-  }
-
+  //Updates the state of the tnt minecart
+  tntCart.update();
 }

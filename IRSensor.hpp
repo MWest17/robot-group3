@@ -1,3 +1,5 @@
+#pragma once
+
 #include <stdint.h>
 
 
@@ -13,6 +15,7 @@ public:
     bool isReflecting();
 
 private:
+    //Stores output pin number
     const uint8_t outPin;
 
 };
