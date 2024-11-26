@@ -10,7 +10,7 @@
 
 #define IN1 2
 #define IN2 4
-#define IN3 7
+#define IN3 7 
 #define IN4 8
 
 #define ENA 3

@@ -23,7 +23,7 @@ void L298NClass::forward(uint8_t speed) {
 }
 
 //Makes Motor A (Left), spin forward, and Motor B (Right), spin backwards
-void L298NClass::right(uint8_t speed) {
+void L298NClass::left(uint8_t speed) {
     //Left Motor Forward
     digitalWrite(in1, HIGH);
     digitalWrite(in2, LOW);
@@ -38,7 +38,7 @@ void L298NClass::right(uint8_t speed) {
 } 
 
 //Makes Motor A (Left), spin backwards, and Motor B (Right), spin forward
-void L298NClass::left(uint8_t speed) {
+void L298NClass::right(uint8_t speed) {
     //Left Motor Backwards
     digitalWrite(in1, LOW);
     digitalWrite(in2, HIGH);

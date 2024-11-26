@@ -15,12 +15,12 @@ direction minecartClass::update() {
 
     } else if(irL.isReflecting() && !(irR.isReflecting())) { //Robot's right side is off line
         //Turn Left
-        L298N.right(turningSpeed);
+        L298N.left(turningSpeed);
         return LEFT;
 
     } else if(!(irL.isReflecting()) && irR.isReflecting()) { //Robot's left side is off line
         //Turn Right
-        L298N.left(turningSpeed);
+        L298N.right(turningSpeed);
         return RIGHT;
         
     } else { //Robot is off line entirely
