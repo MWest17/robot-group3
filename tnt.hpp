@@ -3,7 +3,7 @@
 #include "minecart.hpp"
 
 #define LED_PIN 10
-#define FLASHING_SPEED 50
+#define FLASHING_SPEED 10
 
 
 class tntClass : public minecartClass {
